@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/schowdary75/MooNsPlanner/wiki
+    about: Check the docs before opening an issue
+  - name: Feature Request
+    url: https://github.com/schowdary75/MooNsPlanner/discussions/new?category=feature-requests
+    about: Suggest a new feature or improvement in Discussions
+  - name: Questions & Help
+    url: https://github.com/schowdary75/MooNsPlanner/discussions
+    about: For questions and general help, use Discussions instead

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<CommunityApplications>
+  <Profile>MooNs is a self-hosted, real-time collaborative travel planner. Plan trips together with interactive maps, budgets, bookings, packing lists, day-by-day itineraries and file management — every change syncs instantly across everyone in your group. Includes OIDC/SSO, TOTP MFA, dark mode, PWA support, multi-language UI and a modular addon system (Vacay, Atlas, Collab, Budget, Packing, Journey). Maintained by MooNs — support and bug reports via GitHub Issues.</Profile>
+  <Icon>https://raw.githubusercontent.com/schowdary75/MooNsPlanner/main/docs/moons-icon.png</Icon>
+  <WebPage>https://github.com/schowdary75/MooNsPlanner</WebPage>
+  <Forum>https://github.com/schowdary75/MooNsPlanner/issues</Forum>
+  <DonateLink></DonateLink>
+  <DonateText>Support MooNs development</DonateText>
+</CommunityApplications>

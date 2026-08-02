@@ -1,0 +1,5 @@
+apiVersion: v2
+name: moons
+version: 3.4.1
+description: Minimal Helm chart for MooNs app
+appVersion: "3.4.1"
