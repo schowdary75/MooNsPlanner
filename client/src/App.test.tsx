@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { createMemoryRouter, RouterProvider } from 'react-router-dom'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { http, HttpResponse } from 'msw'
 import { server } from '../tests/helpers/msw/server'
@@ -27,14 +27,19 @@ vi.mock('./hooks/useInAppNotificationListener.ts', () => ({
   useInAppNotificationListener: vi.fn(),
 }))
 
-// ── Helpers ────────────────────────────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────────
 
 function renderApp(initialPath = '/') {
-  return render(
-    <MemoryRouter initialEntries={[initialPath]}>
-      <App />
-    </MemoryRouter>
+  const router = createMemoryRouter(
+    [
+      {
+        path: '/',
+        element: <App />,
+      },
+    ],
+    { initialEntries: [initialPath] }
   )
+  return render(<RouterProvider router={router} />)
 }
 
 /**
@@ -58,7 +63,7 @@ beforeEach(() => {
   document.documentElement.classList.remove('dark')
 })
 
-// ── RootRedirect ───────────────────────────────────────────────────────────────
+// ── RootRedirect ─────────────────────────────────────────────────────────
 
 describe('RootRedirect', () => {
   it('FE-COMP-APP-001: / redirects to /login when not authenticated', async () => {
@@ -166,7 +171,7 @@ describe('ProtectedRoute — admin role check', () => {
   })
 })
 
-// ── Public routes ──────────────────────────────────────────────────────────────
+// ── Public routes ─────────────────────────────────────────────────────────
 
 describe('Public routes', () => {
   it('FE-COMP-APP-012: /login is accessible without authentication', async () => {
@@ -242,7 +247,7 @@ describe('App — on-mount effects', () => {
   })
 })
 
-// ── Dark mode effects ──────────────────────────────────────────────────────────
+// ── Dark mode effects ─────────────────────────────────────────────────────
 
 describe('Dark mode effects', () => {
   it('FE-COMP-APP-020: adds dark class to documentElement when dark_mode is true', async () => {
