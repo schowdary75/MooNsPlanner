@@ -1,5 +1,5 @@
 import { Controller, Get, HttpException, Query, UseGuards } from '@nestjs/common';
-import type { WeatherResult } from '@moon/shared';
+import type { WeatherResult } from '@moons/shared';
 import { WeatherService } from './weather.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ApiError } from '../../services/weatherService';

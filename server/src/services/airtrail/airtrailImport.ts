@@ -1,4 +1,4 @@
-import type { AirtrailImportResult } from '@moon/shared';
+import type { AirtrailImportResult } from '@moons/shared';
 import { db } from '../../db/database';
 import { broadcast } from '../../websocket';
 import { createReservation } from '../reservationService';

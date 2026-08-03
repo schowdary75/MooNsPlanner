@@ -6,7 +6,7 @@ import type {
   MapsPlacePhotoResult,
   MapsReverseResult,
   MapsResolveUrlResult,
-} from '@moon/shared';
+} from '@moons/shared';
 import { DatabaseService } from '../database/database.service';
 import {
   searchPlaces,

@@ -19,7 +19,7 @@ import type {
   MapsResolveUrlResult,
   MapsReverseResult,
   MapsSearchResult,
-} from '@moon/shared';
+} from '@moons/shared';
 import type { User } from '../../types';
 import { MapsService } from './maps.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';

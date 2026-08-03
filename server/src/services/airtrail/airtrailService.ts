@@ -1,4 +1,4 @@
-import type { AirtrailFlight } from '@moon/shared';
+import type { AirtrailFlight } from '@moons/shared';
 import { db } from '../../db/database';
 import { maybe_encrypt_api_key, decrypt_api_key } from '../apiKeyCrypto';
 import { checkSsrf } from '../../utils/ssrfGuard';

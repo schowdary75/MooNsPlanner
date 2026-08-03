@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import type { PublicConfig } from '@moon/shared';
+import type { PublicConfig } from '@moons/shared';
 import { DEFAULT_LANGUAGE } from '../../config';
 
 /**

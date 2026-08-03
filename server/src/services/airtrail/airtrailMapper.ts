@@ -1,6 +1,6 @@
 import { localParts } from '../timezoneService';
 import type { AirtrailAirport, AirtrailFlightRaw, AirtrailNamedCode } from './airtrailClient';
-import type { AirtrailFlight } from '@moon/shared';
+import type { AirtrailFlight } from '@moons/shared';
 
 import * as crypto from 'node:crypto';
 

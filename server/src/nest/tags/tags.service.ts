@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { Tag } from '@moon/shared';
+import type { Tag } from '@moons/shared';
 import {
   listTags,
   createTag,

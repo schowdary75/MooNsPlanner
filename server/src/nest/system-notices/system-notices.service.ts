@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { SystemNoticeDto } from '@moon/shared';
+import type { SystemNoticeDto } from '@moons/shared';
 import { getActiveNoticesFor, dismissNotice } from '../../systemNotices/service';
 
 /**

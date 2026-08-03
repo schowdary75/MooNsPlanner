@@ -1,6 +1,6 @@
 import { db } from '../db/database';
 import { decrypt_api_key, maybe_encrypt_api_key } from './apiKeyCrypto';
-import { normalizeAppearance } from '@moon/shared';
+import { normalizeAppearance } from '@moons/shared';
 
 const ENCRYPTED_SETTING_KEYS = new Set(['webhook_url', 'ntfy_token', 'mapbox_access_token', 'llm_api_key']);
 // Encrypted keys that are masked (••••••••) when returned to the client.

@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpException, Param, Post, Put, UseGuards } from '@nestjs/common';
-import type { Tag, TagListResponse } from '@moon/shared';
+import type { Tag, TagListResponse } from '@moons/shared';
 import type { User } from '../../types';
 import { TagsService } from './tags.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';

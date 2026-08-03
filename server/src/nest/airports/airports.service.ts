@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { Airport } from '@moon/shared';
+import type { Airport } from '@moons/shared';
 import { searchAirports, findByIata } from '../../services/airportService';
 
 /**

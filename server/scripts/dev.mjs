@@ -26,6 +26,7 @@ tsc.stdout.on('data', (chunk) => {
     nodeProc = spawn('node', ['--require', 'tsconfig-paths/register', '--watch', 'dist/index.js'], {
       stdio: 'inherit',
       shell: true,
+      env: { ...process.env, TS_NODE_PROJECT: 'tsconfig.runtime.json' },
     });
     children.push(nodeProc);
   }

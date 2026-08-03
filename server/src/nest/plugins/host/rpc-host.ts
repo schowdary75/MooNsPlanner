@@ -10,7 +10,7 @@ import {
   packingCreateItemRequestSchema, packingUpdateItemRequestSchema,
   collectionCreateRequestSchema, collectionUpdateRequestSchema,
   collectionSavePlaceRequestSchema, collectionCopyToTripRequestSchema,
-} from '@moon/shared';
+} from '@moons/shared';
 import {
   KNOWN_METHODS,
   type KnownMethod,

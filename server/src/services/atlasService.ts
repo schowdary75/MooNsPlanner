@@ -1,6 +1,6 @@
 import { db } from '../db/database';
 import { Trip, Place } from '../types';
-import { CONTINENT_MAP } from '@moon/shared';
+import { CONTINENT_MAP } from '@moons/shared';
 
 import fs from 'fs';
 import path from 'path';

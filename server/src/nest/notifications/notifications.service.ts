@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { ChannelTestResult } from '@moon/shared';
+import type { ChannelTestResult } from '@moons/shared';
 import {
   testSmtp,
   testWebhook,

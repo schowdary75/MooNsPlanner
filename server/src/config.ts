@@ -1,4 +1,4 @@
-import { SUPPORTED_LANGUAGE_CODES as SUPPORTED_LANG_CODES } from '@moon/shared';
+import { SUPPORTED_LANGUAGE_CODES as SUPPORTED_LANG_CODES } from '@moons/shared';
 
 import crypto from 'node:crypto';
 import fs from 'node:fs';

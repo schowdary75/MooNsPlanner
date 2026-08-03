@@ -14,7 +14,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import type { Response } from 'express';
-import type { RegionGeo } from '@moon/shared';
+import type { RegionGeo } from '@moons/shared';
 import type { User } from '../../types';
 import { AtlasService } from './atlas.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';

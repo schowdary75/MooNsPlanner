@@ -5,10 +5,14 @@ import { createTables } from './schema';
 import { runMigrations } from './migrations';
 import { runSeeds } from './seeds';
 import { Place, Tag } from '../types';
+import { MariaDbDatabase } from './mariadb-compat';
 
 // In test mode each vitest worker gets an isolated in-memory DB so that
 // parallel forks can't race on the same file or share migration state.
 const isTest = process.env.NODE_ENV === 'test';
+// MariaDB is the production/local runtime database. Set DB_PROVIDER=sqlite
+// only when deliberately using the retained travel.db rollback copy.
+const useMariaDb = !isTest && (process.env.DB_PROVIDER || 'mariadb').toLowerCase() === 'mariadb';
 
 let dbPath: string;
 if (isTest) {
@@ -28,13 +32,19 @@ if (isTest) {
   dbPath = path.join(dataDir, 'travel.db');
 }
 
-let _db: Database.Database | null = null;
+let _db: Database.Database | MariaDbDatabase | null = null;
 
 function initDb(): void {
   if (_db) {
     try { _db.exec('PRAGMA wal_checkpoint(TRUNCATE)'); } catch (e) {}
     try { _db.close(); } catch (e) {}
     _db = null;
+  }
+
+  if (useMariaDb) {
+    _db = new MariaDbDatabase();
+    console.log(`[DB] Connected to MariaDB database '${process.env.MARIADB_DATABASE || 'moons_migrated'}'`);
+    return;
   }
 
   _db = new Database(dbPath);
@@ -63,7 +73,7 @@ const db = new Proxy({} as Database.Database, {
 });
 
 if (process.env.DEMO_MODE?.toLowerCase() === 'true') {
-  try {
+  if (!useMariaDb) try {
     const { seedDemoData } = require('../demo/demo-seed');
     seedDemoData(_db);
   } catch (err: unknown) {
@@ -73,7 +83,7 @@ if (process.env.DEMO_MODE?.toLowerCase() === 'true') {
 
 function closeDb(): void {
   if (_db) {
-    try { _db.exec('PRAGMA wal_checkpoint(TRUNCATE)'); } catch (e) {}
+    if (!useMariaDb) try { _db.exec('PRAGMA wal_checkpoint(TRUNCATE)'); } catch (e) {}
     try { _db.close(); } catch (e) {}
     _db = null;
     console.log('[DB] Database connection closed');

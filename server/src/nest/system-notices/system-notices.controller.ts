@@ -1,5 +1,5 @@
 import { Controller, Get, HttpCode, HttpException, Param, Post, UseGuards } from '@nestjs/common';
-import type { SystemNoticeDto } from '@moon/shared';
+import type { SystemNoticeDto } from '@moons/shared';
 import type { User } from '../../types';
 import { SystemNoticesService } from './system-notices.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';

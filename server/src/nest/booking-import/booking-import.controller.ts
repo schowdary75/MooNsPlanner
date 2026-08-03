@@ -17,8 +17,8 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { BookingImportService } from './booking-import.service';
 import { ImportJobsService } from './import-jobs.service';
-import { bookingImportModeSchema } from '@moon/shared';
-import type { BookingImportPreviewItem, BookingImportPreviewResponse, BookingImportConfirmResponse, BookingImportMode } from '@moon/shared';
+import { bookingImportModeSchema } from '@moons/shared';
+import type { BookingImportPreviewItem, BookingImportPreviewResponse, BookingImportConfirmResponse, BookingImportMode } from '@moons/shared';
 
 const ACCEPTED_EXTS = new Set(['.eml', '.pdf', '.pkpass', '.html', '.htm', '.txt']);
 const MAX_FILE_BYTES = 10 * 1024 * 1024;

@@ -5,13 +5,13 @@ import { logInfo, logDebug, logError } from './auditLog';
 // ── Types ──────────────────────────────────────────────────────────────────
 
 import type { NotifEventType } from './notificationPreferencesService';
-import { EMAIL_I18N as I18N, EVENT_TEXTS, PASSWORD_RESET_I18N } from '@moon/shared/i18n/externalNotifications';
+import { EMAIL_I18N as I18N, EVENT_TEXTS, PASSWORD_RESET_I18N } from '@moons/shared/i18n/externalNotifications';
 import type {
   EmailStrings,
   EventText,
   PasswordResetStrings,
   NotificationEventKey,
-} from '@moon/shared/i18n/externalNotifications';
+} from '@moons/shared/i18n/externalNotifications';
 
 import nodemailer from 'nodemailer';
 

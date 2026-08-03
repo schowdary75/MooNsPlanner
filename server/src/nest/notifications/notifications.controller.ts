@@ -11,7 +11,7 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import type { ChannelTestResult, UnreadCountResult } from '@moon/shared';
+import type { ChannelTestResult, UnreadCountResult } from '@moons/shared';
 import type { User } from '../../types';
 import { NotificationsService } from './notifications.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';

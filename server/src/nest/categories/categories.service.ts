@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { Category } from '@moon/shared';
+import type { Category } from '@moons/shared';
 import {
   listCategories,
   getCategoryById,

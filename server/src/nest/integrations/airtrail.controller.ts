@@ -6,7 +6,7 @@ import { CurrentUser } from '../auth/current-user.decorator';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
 import { AirtrailAddonGuard } from './airtrail-addon.guard';
 import { getClientIp } from '../../services/auditLog';
-import { airtrailSettingsSchema, type AirtrailSettings } from '@moon/shared';
+import { airtrailSettingsSchema, type AirtrailSettings } from '@moons/shared';
 import {
   getConnectionSettings,
   getConnectionStatus,

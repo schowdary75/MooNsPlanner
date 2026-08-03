@@ -7,7 +7,7 @@ import type {
   CollectionPlaceUpdateRequest,
   CollectionCopyToTripRequest,
   CollectionStatus,
-} from '@moon/shared';
+} from '@moons/shared';
 
 /**
  * Thin Nest wrapper around services/collectionsService. All access control lives
