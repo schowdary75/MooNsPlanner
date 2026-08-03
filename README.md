@@ -133,7 +133,39 @@
 
 ## 🚀 Quick Start
 
-### Docker Compose (Recommended)
+### ⚡ One-Click Start (Fastest)
+
+Clone and run — that's it:
+
+**Linux / macOS:**
+```bash
+git clone https://github.com/schowdary75/MooNsPlanner.git
+cd MooNsPlanner
+chmod +x start.sh
+./start.sh
+```
+
+**Windows:**
+```cmd
+git clone https://github.com/schowdary75/MooNsPlanner.git
+cd MooNsPlanner
+start.bat
+```
+
+The script automatically installs dependencies, builds the project, and launches the server. Visit `http://localhost:3001` when it's ready.
+
+#### Start Script Modes
+
+| Command | Description |
+|---|---|
+| `./start.sh` | Development mode (default) — hot-reload enabled |
+| `./start.sh --prod` | Production mode — builds & runs optimized bundle |
+| `./start.sh --docker` | Docker mode — starts via Docker Compose |
+| `./stop.sh` | Stops the running server |
+
+---
+
+### 🐳 Docker Compose
 
 ```bash
 git clone https://github.com/schowdary75/MooNsPlanner.git
@@ -145,7 +177,9 @@ docker compose up -d
 
 Visit `http://localhost:3001` — an admin account is created on first boot (check the server logs for the password).
 
-### From Sources
+---
+
+### 🔧 From Sources (Manual)
 
 ```bash
 git clone https://github.com/schowdary75/MooNsPlanner.git
@@ -153,6 +187,7 @@ cd MooNsPlanner
 npm install
 npm run dev
 ```
+
 
 > See [`build-from-sources`](build-from-sources) for detailed build instructions.
 
