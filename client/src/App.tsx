@@ -115,6 +115,9 @@ export default function App() {
   const { loadAddons } = useAddonStore()
   const { loadPlugins } = usePluginStore()
 
+  // Ensure location is available before any effect that references it
+  const location = useLocation()
+
   useEffect(() => {
     if (!location.pathname.startsWith('/shared/') && !location.pathname.startsWith('/public/') && !location.pathname.startsWith('/login')) {
       // If the persist snapshot already has an authenticated user, validate
@@ -127,7 +130,7 @@ export default function App() {
         loadUser()
       }
     }
-    authApi.getAppConfig().then(async (config: { demo_mode?: boolean; dev_mode?: boolean; is_prerelease?: boolean; has_maps_key?: boolean; version?: string; timezone?: string; require_mfa?: boolean; trip_reminders_enabled?: boolean; places_photos_enabled?: boolean; places_autocomplete_enabled?: boolean; places_details_enabled?: boolean; permissions?: Record<string, PermissionLevel> }) => {
+    authApi.getAppConfig().then(async (config: { demo_mode?: boolean; dev_mode?: boolean; is_prerelease?: boolean; has_maps_key?: boolean; version?: string; timezone?: string; require_mfa?: boolean; trip_reminders_enabled?: boolean; places_photos_enabled?: boolean; places_autocomplete_enabled?: boolean; places_details_enabled?: boolean; permissions?: any }) => {
       setDemoMode(!!config?.demo_mode)
       if (config?.dev_mode) setDevMode(true)
       if (config?.is_prerelease !== undefined) setIsPrerelease(config.is_prerelease)
@@ -180,7 +183,6 @@ export default function App() {
     return () => unregisterSyncTriggers()
   }, [])
 
-  const location = useLocation()
   const isSharedPage = location.pathname.startsWith('/shared/')
 
   useEffect(() => {
