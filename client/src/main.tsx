@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
 // Self-hosted Poppins (bundled, same-origin) so the app font can't be blocked by
 // ad/tracker blockers the way the Google Fonts CDN can.
@@ -35,10 +35,12 @@ startConnectivityProbe()
 // Keep offline data (map tiles, file blobs, IndexedDB) exempt from eviction.
 requestPersistentStorage()
 
+const router = createBrowserRouter([
+  { path: '/', element: <App /> },
+])
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )
