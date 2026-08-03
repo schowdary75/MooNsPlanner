@@ -278,6 +278,14 @@ export default function Navbar({ tripTitle, tripId, onBack, showBack, onShare }:
                     {t('nav.help')}
                   </Link>
 
+                  <a href="https://github.com/schowdary75/MooNsPlanner/wiki" target="_blank" rel="noopener noreferrer" onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2 text-sm transition-colors text-content-secondary"
+                    onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-hover)'}
+                    onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                    <Bookmark className="w-4 h-4" />
+                    Wiki
+                  </a>
+
                   {user.role === 'admin' && (
                     <Link to="/admin" onClick={() => setUserMenuOpen(false)}
                       className="flex items-center gap-2 px-4 py-2 text-sm transition-colors text-content-secondary"

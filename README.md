@@ -14,7 +14,7 @@
 
 <br />
 
-[Features](#-features) · [Screenshots](#-screenshots) · [Quick Start](#-quick-start) · [Tech Stack](#-tech-stack) · [Configuration](#️-configuration) · [Contributing](#-contributing)
+[Features](#-features) · [Screenshots](#-screenshots) · [Quick Start](#-quick-start) · [Wiki](https://github.com/schowdary75/MooNsPlanner/wiki) · [Tech Stack](#-tech-stack) · [Configuration](#️-configuration) · [Contributing](#-contributing)
 
 <br />
 
