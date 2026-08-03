@@ -26,43 +26,33 @@
 
 <div align="center">
 
-### 🏠 Dashboard — Your Travel Command Center
-
 <img src="docs/screenshots/dashboard.png" alt="MooNsPlanner Dashboard" width="100%" />
+<br/>
+<i>Dashboard — Your Travel Command Center</i>
+<br/><br/>
 
-> *At-a-glance view of upcoming trips, travel stats, currency converter, world timezones, and upcoming reservations — everything a traveler needs in one place.*
-
-<br />
-
-### 🗺️ Interactive Trip Planner
-
-<img src="docs/screenshots/trip-planner.png" alt="Trip Planner with Interactive Map" width="100%" />
-
-> *Drag-and-drop day-by-day itinerary builder with an interactive map. Add places, activities, and notes — see everything on the map in real-time.*
-
-<br />
-
-### 📓 Travel Journal — Relive Your Adventures
-
-<img src="docs/screenshots/travel-journal.png" alt="Travel Journal" width="100%" />
-
-> *Document your experiences with the built-in travel journal. Rate places with pros & cons, tag entries, and track your journey timeline with photos and maps.*
-
-<br />
-
-### 🌍 Atlas — Track Your Global Footprint
-
-<img src="docs/screenshots/atlas-world-map.png" alt="Atlas World Map" width="100%" />
-
-> *Visualize every country you've visited on an interactive world map. Track your travel statistics — countries, cities, days traveled, and distance flown across continents.*
-
-<br />
-
-### 🏖️ Vacay — Manage Your Time Off
-
-<img src="docs/screenshots/vacay-calendar.png" alt="Vacation Calendar" width="100%" />
-
-> *Annual vacation day planner with calendar view. Track used days, remaining balance, company holidays, and plan your time off across the entire year.*
+<table width="100%">
+  <tr>
+    <td width="50%" align="center">
+      <img src="docs/screenshots/trip-planner.png" alt="Interactive Trip Planner" width="100%" /><br/>
+      <b>Interactive Trip Planner</b>
+    </td>
+    <td width="50%" align="center">
+      <img src="docs/screenshots/travel-journal.png" alt="Travel Journal" width="100%" /><br/>
+      <b>Travel Journal</b>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="docs/screenshots/atlas-world-map.png" alt="Atlas World Map" width="100%" /><br/>
+      <b>Atlas World Map</b>
+    </td>
+    <td width="50%" align="center">
+      <img src="docs/screenshots/vacay-calendar.png" alt="Vacation Calendar" width="100%" /><br/>
+      <b>Vacay Planner</b>
+    </td>
+  </tr>
+</table>
 
 </div>
 
