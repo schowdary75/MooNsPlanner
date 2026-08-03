@@ -23,7 +23,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@modelcontextprotocol/sdk": "^1.30.0",
     "@moons/shared": "*",
     "@nestjs/common": "^11.1.24",
     "@nestjs/core": "^11.1.24",
