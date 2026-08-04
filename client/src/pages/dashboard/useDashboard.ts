@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router'
 import { tripsApi, authApi, reservationsApi } from '../../api/client'
 import { tripRepo } from '../../repo/tripRepo'
 import { useAuthStore } from '../../store/authStore'

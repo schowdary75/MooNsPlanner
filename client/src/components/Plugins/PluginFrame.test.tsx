@@ -7,7 +7,7 @@ const toast = { info: vi.fn(), success: vi.fn(), warning: vi.fn(), error: vi.fn(
 const invoke = vi.fn((..._args: unknown[]) => Promise.resolve({ ok: true }));
 const wsListeners = new Set<(ev: Record<string, unknown>) => void>();
 
-vi.mock('react-router-dom', () => ({ useNavigate: () => navigate }));
+vi.mock('react-router', () => ({ useNavigate: () => navigate }));
 vi.mock('../shared/Toast', () => ({ useToast: () => toast }));
 vi.mock('../../i18n', () => ({ useTranslation: () => ({ locale: 'en', t: (k: string) => k }) }));
 vi.mock('../../store/authStore', () => ({ useAuthStore: (sel: (s: unknown) => unknown) => sel({ user: { id: 7, username: 'ada', avatar_url: null, role: 'admin' } }) }));

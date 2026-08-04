@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useTranslation } from '../i18n'
 import { Map, Eye, EyeOff, Mail, Lock, User } from 'lucide-react'
 import { useRegister } from './register/useRegister'
