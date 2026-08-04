@@ -323,7 +323,7 @@ export default function DemoBanner(): React.ReactElement | null {
       >
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-          <img src="/icons/icon-only.png" alt="" style={{ width: 36, height: 36, borderRadius: 10 }} />
+          <img src="/icons/icon-only.png" alt="" style={{ width: 36, height: 36, borderRadius: 10 }} className="dark:invert" />
           <h2
             style={{
               margin: 0,
@@ -336,7 +336,7 @@ export default function DemoBanner(): React.ReactElement | null {
             }}
           >
             {t.titleBefore}
-            <img src="/logo-moons.png" alt="moon" style={{ height: 18 }} />
+            <img src="/logo-moons.png" alt="moon" style={{ height: 18 }} className="dark:invert" />
             {t.titleAfter}
           </h2>
         </div>

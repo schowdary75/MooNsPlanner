@@ -591,7 +591,7 @@ export default function JourneyPublicPage() {
             position: 'relative',
           }}
         >
-          <img src="/icons/icon-only.png" alt="moon" width={26} height={26} />
+          <img src="/icons/icon-only.png" alt="moon" width={26} height={26} className="dark:invert" />
         </div>
 
         <div
@@ -815,7 +815,7 @@ export default function JourneyPublicPage() {
             boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
           }}
         >
-          <img src="/icons/icon-only.png" alt="moon" width={18} height={18} style={{ borderRadius: 4 }} />
+          <img src="/icons/icon-only.png" alt="moon" width={18} height={18} style={{ borderRadius: 4 }} className="dark:invert" />
           <span style={{ fontSize: 'calc(11px * var(--fs-scale-caption, 1))', color: '#9ca3af' }}>
             {t('journey.public.sharedVia')} <strong style={{ color: '#6b7280' }}>moon</strong>
           </span>
