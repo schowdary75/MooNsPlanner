@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 import { useEffect, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { Loader2, CheckCircle2, AlertCircle, X } from 'lucide-react'
 import { useTranslation } from '../../i18n'
 import { addListener, removeListener } from '../../api/websocket'

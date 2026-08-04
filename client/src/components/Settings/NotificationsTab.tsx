@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { Lock } from 'lucide-react'
 import { useTranslation } from '../../i18n'
 import { notificationsApi, settingsApi } from '../../api/client'

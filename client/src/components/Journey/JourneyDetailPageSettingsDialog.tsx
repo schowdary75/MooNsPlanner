@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { X, ImagePlus, Plus, Trash2, UserPlus, Archive, ArchiveRestore } from 'lucide-react'
 import { useJourneyStore } from '../../store/journeyStore'
 import { useTranslation } from '../../i18n'

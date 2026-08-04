@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { User, Save, Lock, KeyRound, AlertTriangle, Shield, Camera, Trash2, Copy, Download, Printer } from 'lucide-react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router'
 import { useTranslation } from '../../i18n'
 import { useAuthStore } from '../../store/authStore'
 import { useToast } from '../shared/Toast'

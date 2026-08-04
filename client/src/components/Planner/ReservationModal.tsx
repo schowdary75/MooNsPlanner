@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 import apiClient from '../../api/client'
 import { useTripStore } from '../../store/tripStore'
 import { useAddonStore } from '../../store/addonStore'

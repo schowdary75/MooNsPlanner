@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { Info, AlertTriangle, AlertOctagon, X } from 'lucide-react';
 import { useSystemNoticeStore } from '../../store/systemNoticeStore.js';
 import type { SystemNoticeDTO } from '../../store/systemNoticeStore.js';

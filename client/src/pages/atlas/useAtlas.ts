@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { getIntlLanguage, getLocaleForLanguage, useTranslation } from '../../i18n'
 import { useSettingsStore } from '../../store/settingsStore'
 import apiClient, { mapsApi, pluginsApi, type PluginAtlasLayer } from '../../api/client'

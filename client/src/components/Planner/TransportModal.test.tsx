@@ -18,8 +18,8 @@ import {
 } from '../../../tests/helpers/factories';
 import { TransportModal } from './TransportModal';
 
-vi.mock('react-router-dom', async (importActual) => {
-  const actual = await importActual<typeof import('react-router-dom')>();
+vi.mock('react-router', async (importActual) => {
+  const actual = await importActual<typeof import('react-router')>();
   return { ...actual, useParams: () => ({ id: '1' }) };
 });
 

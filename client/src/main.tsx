@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router'
 import App from './App'
 // Self-hosted Poppins (bundled, same-origin) so the app font can't be blocked by
 // ad/tracker blockers the way the Google Fonts CDN can.

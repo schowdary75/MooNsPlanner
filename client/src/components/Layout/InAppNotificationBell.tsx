@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { Bell, Trash2, CheckCheck } from 'lucide-react'
 import { useTranslation } from '../../i18n'
 import { useInAppNotificationStore } from '../../store/inAppNotificationStore.ts'

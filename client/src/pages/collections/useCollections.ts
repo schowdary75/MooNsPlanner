@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router'
 import { useTranslation } from '../../i18n'
 import { useElementSize } from '../../hooks/useElementSize'
 import { useElementRect } from '../../hooks/useElementRect'
