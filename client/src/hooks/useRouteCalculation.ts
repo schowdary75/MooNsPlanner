@@ -40,7 +40,12 @@ export function useRouteCalculation(tripStore: TripStoreState, selectedDayId: nu
     const allDays = useTripStore.getState().days || []
     
     const dayIdsToProcess = dayId === 'all' ? allDays.map(d => d.id) : [dayId as number]
-    const allRunsWithHotel: { lat: number; lng: number }[][] = []
+    
+    type RouteWaypoint = 
+      | { type: 'point'; lat: number; lng: number; isPlace: boolean }
+      | { type: 'break' }
+      
+    const waypoints: RouteWaypoint[] = []
 
     for (const currentDayId of dayIdsToProcess) {
       const da = (currentAssignments[String(currentDayId)] || []).slice().sort((a, b) => a.order_index - b.order_index)
@@ -51,7 +56,6 @@ export function useRouteCalculation(tripStore: TripStoreState, selectedDayId: nu
       }
       const thisOrder = dayOrder(currentDayId)
 
-      // Transport reservations for this day with a known position — mirrors getTransportForDay semantics
       const dayTransports = thisOrder == null ? [] : allReservations.filter(r => {
         if (!TRANSPORT_TYPES.includes(r.type)) return false
         const startId = r.day_id
@@ -69,10 +73,10 @@ export function useRouteCalculation(tripStore: TripStoreState, selectedDayId: nu
         return pos != null
       })
 
-      // Build a unified list of places + transports sorted by effective position.
       type Entry =
         | { kind: 'place'; lat: number; lng: number; pos: number; time: string | null }
         | { kind: 'transport'; from: { lat: number; lng: number } | null; to: { lat: number; lng: number } | null; pos: number }
+      
       const entries: Entry[] = [
         ...da.filter(a => a.place?.lat && a.place?.lng).map(a => ({
           kind: 'place' as const, lat: a.place.lat!, lng: a.place.lng!, pos: a.order_index, time: a.place?.place_time ?? null,
@@ -88,36 +92,14 @@ export function useRouteCalculation(tripStore: TripStoreState, selectedDayId: nu
         }),
       ].sort((a, b) => a.pos - b.pos)
 
-      // Group located places into driving runs.
-      const runs: { lat: number; lng: number }[][] = []
-      let currentRun: { lat: number; lng: number }[] = []
-      let runHasPlace = false
-      for (const entry of entries) {
-        if (entry.kind === 'place') {
-          currentRun.push({ lat: entry.lat, lng: entry.lng })
-          runHasPlace = true
-        } else if (entry.from || entry.to) {
-          if (entry.from) currentRun.push(entry.from)
-          if (currentRun.length >= 2 && runHasPlace) runs.push(currentRun)
-          currentRun = []
-          runHasPlace = false
-          if (entry.to) currentRun.push(entry.to)
-        }
-      }
-      if (currentRun.length >= 2 && runHasPlace) runs.push(currentRun)
-
-      // Bookend the route with the day's accommodation
       const day = allDays.find(d => d.id === currentDayId)
       const bookends = day && optimizeFromAccommodation !== false
         ? getDayBookendHotels(day, allDays, accommodations)
         : null
-      const flatPts: { lat: number; lng: number }[] = []
-      for (const e of entries) {
-        if (e.kind === 'place') flatPts.push({ lat: e.lat, lng: e.lng })
-        else { if (e.from) flatPts.push(e.from); if (e.to) flatPts.push(e.to) }
-      }
+
       const hotelPt = (a?: Accommodation) =>
         a && a.place_lat != null && a.place_lng != null ? { lat: a.place_lat, lng: a.place_lng } : null
+
       const contributes = (e: Entry) => e.kind === 'place' || !!e.from || !!e.to
       const firstStop = entries.find(contributes)
       const lastStop = [...entries].reverse().find(contributes)
@@ -125,22 +107,44 @@ export function useRouteCalculation(tripStore: TripStoreState, selectedDayId: nu
         e ? { isPlace: e.kind === 'place', time: e.kind === 'place' ? e.time : null } : undefined
       const drawMorning = !!bookends && !!day && shouldDrawMorningLeg(bookends, day, edgeInfo(firstStop))
       const drawEvening = !!bookends && !!day && shouldDrawEveningLeg(bookends, day, edgeInfo(lastStop))
-      const runsWithHotel = withHotelBookends(
-        runs,
-        flatPts[0],
-        flatPts[flatPts.length - 1],
-        drawMorning ? hotelPt(bookends?.morning) : null,
-        drawEvening ? hotelPt(bookends?.evening) : null,
-      )
 
-      if (runsWithHotel.length === 0 && drawMorning && drawEvening) {
-        const m = hotelPt(bookends?.morning)
-        const e = hotelPt(bookends?.evening)
-        if (m && e && (m.lat !== e.lat || m.lng !== e.lng)) runsWithHotel.push([m, e])
+      const startH = drawMorning ? hotelPt(bookends?.morning) : null
+      const endH = drawEvening ? hotelPt(bookends?.evening) : null
+
+      // If this day starts with a hotel bookend, add it
+      if (startH) waypoints.push({ type: 'point', lat: startH.lat, lng: startH.lng, isPlace: true })
+
+      for (const entry of entries) {
+        if (entry.kind === 'place') {
+          waypoints.push({ type: 'point', lat: entry.lat, lng: entry.lng, isPlace: true })
+        } else if (entry.kind === 'transport') {
+          if (entry.from || entry.to) {
+            if (entry.from) waypoints.push({ type: 'point', lat: entry.from.lat, lng: entry.from.lng, isPlace: false })
+            waypoints.push({ type: 'break' })
+            if (entry.to) waypoints.push({ type: 'point', lat: entry.to.lat, lng: entry.to.lng, isPlace: false })
+          }
+        }
       }
-      
-      allRunsWithHotel.push(...runsWithHotel)
+
+      // If this day ends with a hotel bookend, add it
+      if (endH) waypoints.push({ type: 'point', lat: endH.lat, lng: endH.lng, isPlace: true })
     }
+
+    const allRunsWithHotel: { lat: number; lng: number }[][] = []
+    let currentRun: { lat: number; lng: number }[] = []
+    let runHasPlace = false
+
+    for (const wp of waypoints) {
+      if (wp.type === 'point') {
+        currentRun.push({ lat: wp.lat, lng: wp.lng })
+        if (wp.isPlace) runHasPlace = true
+      } else if (wp.type === 'break') {
+        if (currentRun.length >= 2 && runHasPlace) allRunsWithHotel.push(currentRun)
+        currentRun = []
+        runHasPlace = false
+      }
+    }
+    if (currentRun.length >= 2 && runHasPlace) allRunsWithHotel.push(currentRun)
 
     const straightLines = (): [number, number][][] =>
       allRunsWithHotel.map(r => r.map(p => [p.lat, p.lng] as [number, number]))
