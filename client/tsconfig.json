@@ -7,8 +7,6 @@
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
-    "baseUrl": ".",
-    "ignoreDeprecations": "5.0",
     "paths": {
       "@moons/shared": ["../shared/src/index.ts"],
       "@moons/shared/*": ["../shared/src/*"]

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { ChevronsDownUp, ChevronsUpDown, FileDown, Undo2, ArrowUpDown, CalendarPlus, Route as RouteIcon } from 'lucide-react'
+import { ChevronsDownUp, ChevronsUpDown, FileDown, Undo2, ArrowUpDown, CalendarPlus, Route as RouteIcon, Footprints } from 'lucide-react'
 import { downloadTripPDF } from '../PDF/TripPDF'
 import { DayReorderPopup } from './DayReorderPopup'
 import Tooltip from '../shared/Tooltip'
@@ -18,6 +18,8 @@ interface DayPlanSidebarToolbarProps {
   reservations: Reservation[]
   allConnectionsShown?: boolean
   onToggleAllConnections?: () => void
+  allRoutesShown?: boolean
+  onToggleAllRoutes?: () => void
   dayNotes: Record<string, DayNote[]>
   t: (key: string, params?: Record<string, any>) => string
   locale: string
@@ -41,6 +43,7 @@ interface DayPlanSidebarToolbarProps {
 export function DayPlanSidebarToolbar({
   tripId, trip, days, places, categories, assignments, reservations, dayNotes,
   allConnectionsShown = false, onToggleAllConnections,
+  allRoutesShown = false, onToggleAllRoutes,
   t, locale, toast, pdfHover, setPdfHover, setIcsHover,
   expandedDays, setExpandedDays, onUndo, canUndo, undoHover, setUndoHover, lastActionLabel,
   canEditDays, onReorderDays, onAddDay,
@@ -321,6 +324,32 @@ export function DayPlanSidebarToolbar({
                 onMouseLeave={e => { if (!allConnectionsShown) e.currentTarget.style.background = 'transparent' }}
               >
                 <RouteIcon size={14} strokeWidth={2} />
+              </button>
+            </Tooltip>
+          )
+        })()}
+        {onToggleAllRoutes && (() => {
+          const label = t(allRoutesShown ? 'map.hideAllRoutes' : 'map.showAllRoutes', { defaultValue: allRoutesShown ? 'Hide trip route' : 'Show trip route' })
+          return (
+            <Tooltip label={label} placement="bottom">
+              <button
+                type="button"
+                onClick={onToggleAllRoutes}
+                aria-label={label}
+                aria-pressed={allRoutesShown}
+                style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  width: 30, height: 30, borderRadius: 8,
+                  border: allRoutesShown ? 'none' : '1px solid var(--border-primary)',
+                  background: allRoutesShown ? '#10b981' : 'none',
+                  color: allRoutesShown ? '#fff' : 'var(--text-primary)',
+                  cursor: 'pointer', fontFamily: 'inherit', padding: 0,
+                  transition: 'color 0.15s, border-color 0.15s, background 0.15s',
+                }}
+                onMouseEnter={e => { if (!allRoutesShown) e.currentTarget.style.background = 'var(--bg-hover)' }}
+                onMouseLeave={e => { if (!allRoutesShown) e.currentTarget.style.background = 'transparent' }}
+              >
+                <Footprints size={14} strokeWidth={2} />
               </button>
             </Tooltip>
           )

@@ -34,6 +34,7 @@ if (_encryptionKey) {
     // Non-fatal: env var is the source of truth when set.
   }
 } else {
+  let isGenerated = false;
   // Try the dedicated key file first (covers all installs after first start).
   try {
     _encryptionKey = fs.readFileSync(encKeyFile, 'utf8').trim();
@@ -47,6 +48,7 @@ if (_encryptionKey) {
     // .encryption_key so future JWT rotations cannot break decryption.
     try {
       _encryptionKey = fs.readFileSync(jwtSecretFile, 'utf8').trim();
+      isGenerated = true;
       console.warn('WARNING: ENCRYPTION_KEY is not set. Falling back to JWT secret for at-rest encryption.');
       console.warn('The value has been persisted to data/.encryption_key — JWT rotation is now safe.');
     } catch {
@@ -57,19 +59,22 @@ if (_encryptionKey) {
   if (!_encryptionKey) {
     // Fresh install — auto-generate a dedicated key.
     _encryptionKey = crypto.randomBytes(32).toString('hex');
+    isGenerated = true;
   }
 
   // Persist whatever key was resolved so subsequent starts skip the fallback chain.
-  try {
-    if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
-    fs.writeFileSync(encKeyFile, _encryptionKey, { mode: 0o600 });
-    console.log('Encryption key persisted to', encKeyFile);
-  } catch (writeErr: unknown) {
-    console.warn(
-      'WARNING: Could not persist encryption key to disk:',
-      writeErr instanceof Error ? writeErr.message : writeErr,
-    );
-    console.warn('Set ENCRYPTION_KEY env var to avoid losing access to encrypted secrets on restart.');
+  if (isGenerated) {
+    try {
+      if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+      fs.writeFileSync(encKeyFile, _encryptionKey, { mode: 0o600 });
+      console.log('Encryption key persisted to', encKeyFile);
+    } catch (writeErr: unknown) {
+      console.warn(
+        'WARNING: Could not persist encryption key to disk:',
+        writeErr instanceof Error ? writeErr.message : writeErr,
+      );
+      console.warn('Set ENCRYPTION_KEY env var to avoid losing access to encrypted secrets on restart.');
+    }
   }
 }
 
