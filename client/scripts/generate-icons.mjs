@@ -20,7 +20,7 @@ const sizes = [
 
 for (const { name, size } of sizes) {
   await sharp(svgBuffer, { density: 300 })
-    .resize(size, size)
+    .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .png({ compressionLevel: 9 })
     .toFile(join(iconsDir, name));
   console.log(`  \u2713 ${name} (${size}x${size})`);
