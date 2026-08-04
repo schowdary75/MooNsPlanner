@@ -199,7 +199,7 @@ export default function LoginPage(): React.ReactElement {
             gap: 8,
           }}
         >
-          <img src="/logo-moons.png" alt="MooNs" style={{ height: 72, objectFit: 'contain' }} />
+          <img src="/logo-moons.png" alt="MooNs" style={{ height: 72, objectFit: 'contain' }} className="dark:invert" />
           <p
             style={{
               margin: 0,
@@ -542,7 +542,7 @@ export default function LoginPage(): React.ReactElement {
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 560, textAlign: 'center' }}>
           {/* Logo */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 48 }}>
-            <img src="/logo-moons.png" alt="MooNs" style={{ height: 64, objectFit: 'contain' }} />
+            <img src="/logo-moons.png" alt="MooNs" style={{ height: 64, objectFit: 'contain' }} className="dark:invert" />
           </div>
 
           <h2
@@ -656,7 +656,7 @@ export default function LoginPage(): React.ReactElement {
             className="mobile-logo"
           >
             <style>{`@media(min-width:1024px){.mobile-logo{display:none!important}}`}</style>
-            <img src="/logo-moons.png" alt="MooNs" style={{ height: 48, objectFit: 'contain' }} />
+            <img src="/logo-moons.png" alt="MooNs" style={{ height: 48, objectFit: 'contain' }} className="dark:invert" />
             <p
               style={{
                 margin: 0,

@@ -122,7 +122,7 @@ export default function Navbar({ tripTitle, tripId, onBack, showBack, onShare }:
         )}
 
         <Link to="/dashboard" className="flex items-center gap-2 transition-colors flex-shrink-0">
-          <img src="/logo-moons.png" alt="MooNs" style={{ height: 32, objectFit: 'contain' }} />
+          <img src="/logo-moons.png" alt="MooNs" style={{ height: 32, objectFit: 'contain' }} className="dark:invert" />
         </Link>
 
         {tripTitle && (
