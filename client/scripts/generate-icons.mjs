@@ -10,7 +10,7 @@ import sharp from 'sharp';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const iconsDir = join(__dirname, '..', 'public', 'icons');
-const svgBuffer = readFileSync(join(iconsDir, 'icon.svg'));
+const svgBuffer = readFileSync(join(iconsDir, 'icon-only.png'));
 
 const sizes = [
   { name: 'apple-touch-icon-180x180.png', size: 180 },

@@ -196,7 +196,7 @@ export default function SharedTripPage() {
             border: '1px solid rgba(255,255,255,0.1)',
           }}
         >
-          <img src="/icons/icon-white.svg" alt="moon" width="26" height="26" />
+          <img src="/icons/icon-only.png" alt="moon" width="26" height="26" />
         </div>
 
         <div
@@ -1124,7 +1124,7 @@ export default function SharedTripPage() {
               boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
             }}
           >
-            <img src="/icons/icon.svg" alt="moon" width="18" height="18" style={{ borderRadius: 4 }} />
+            <img src="/icons/icon-only.png" alt="moon" width="18" height="18" style={{ borderRadius: 4 }} />
             <span className="text-[#9ca3af]" style={{ fontSize: 'calc(11px * var(--fs-scale-caption, 1))' }}>
               {t('shared.sharedVia')} <strong className="text-[#6b7280]">moon</strong>
             </span>

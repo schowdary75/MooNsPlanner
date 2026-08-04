@@ -163,7 +163,7 @@ export default function AddonManager({ bagTrackingEnabled, onToggleBagTracking, 
         <div className="px-6 py-4 border-b border-edge-secondary">
           <h2 className="font-semibold text-content">{t('admin.addons.title')}</h2>
           <p className="text-xs mt-1 text-content-muted" style={{ display: 'flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
-            {t('admin.addons.subtitleBefore')}<img src={dark ? '/text-light.svg' : '/text-dark.svg'} alt="moon" style={{ height: 11, display: 'inline', verticalAlign: 'middle', opacity: 0.7 }} />{t('admin.addons.subtitleAfter')}
+            {t('admin.addons.subtitleBefore')}<img src={dark ? '/logo-moons.png' : '/logo-moons.png'} alt="moon" style={{ height: 11, display: 'inline', verticalAlign: 'middle', opacity: 0.7 }} />{t('admin.addons.subtitleAfter')}
           </p>
         </div>
 
