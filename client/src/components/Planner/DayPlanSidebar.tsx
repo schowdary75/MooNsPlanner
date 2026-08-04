@@ -76,6 +76,8 @@ interface DayPlanSidebarProps {
   onAddReservation: (dayId: number) => void
   onNavigateToFiles?: () => void
   routeShown?: boolean
+  allRoutesShown?: boolean
+  onToggleAllRoutes?: () => void
   routeProfile?: 'driving' | 'walking'
   onToggleRoute?: () => void
   onSetRouteProfile?: (profile: 'driving' | 'walking') => void
@@ -133,6 +135,8 @@ function useDayPlanSidebar(props: DayPlanSidebarProps) {
   onAddPlaceToDay,
   onNavigateToFiles,
   routeShown = false,
+  allRoutesShown = false,
+  onToggleAllRoutes,
   routeProfile = 'driving',
   onToggleRoute,
   onSetRouteProfile,
@@ -427,11 +431,12 @@ function useDayPlanSidebar(props: DayPlanSidebarProps) {
   // day while the Route toggle is on. Mobile: each expanded day the user tapped
   // "Route" on — shown inline so seeing distances between places doesn't require
   // selecting the day, which would close the mobile sheet (#1374).
-  const routeDayIds = useMemo<number[]>(() => (
-    showRouteToolsWhenExpanded
+  const routeDayIds = useMemo<number[]>(() => {
+    if (allRoutesShown) return days.map(d => d.id)
+    return showRouteToolsWhenExpanded
       ? days.filter(d => expandedRouteDayIds.has(d.id) && expandedDays.has(d.id)).map(d => d.id)
       : (routeShown && selectedDayId ? [selectedDayId] : [])
-  ), [showRouteToolsWhenExpanded, expandedRouteDayIds, expandedDays, days, routeShown, selectedDayId])
+  }, [allRoutesShown, showRouteToolsWhenExpanded, expandedRouteDayIds, expandedDays, days, routeShown, selectedDayId])
   const routeDayKey = routeDayIds.join(',')
 
   // Per-segment travel times shown as connectors between a day's located stops.
@@ -1027,6 +1032,8 @@ function useDayPlanSidebar(props: DayPlanSidebarProps) {
     onAddPlaceToDay,
     onNavigateToFiles,
     routeShown,
+    allRoutesShown,
+    onToggleAllRoutes,
     routeProfile,
     onToggleRoute,
     onSetRouteProfile,
@@ -1198,6 +1205,8 @@ const DayPlanSidebar = React.memo(function DayPlanSidebar(props: DayPlanSidebarP
     onAddPlaceToDay,
     onNavigateToFiles,
     routeShown,
+    allRoutesShown,
+    onToggleAllRoutes,
     routeProfile,
     onToggleRoute,
     onSetRouteProfile,
@@ -1333,6 +1342,8 @@ const DayPlanSidebar = React.memo(function DayPlanSidebar(props: DayPlanSidebarP
         reservations={reservations}
         allConnectionsShown={allConnectionsShown}
         onToggleAllConnections={onToggleAllConnections}
+        allRoutesShown={allRoutesShown}
+        onToggleAllRoutes={onToggleAllRoutes}
         dayNotes={dayNotes}
         t={t}
         locale={locale}
